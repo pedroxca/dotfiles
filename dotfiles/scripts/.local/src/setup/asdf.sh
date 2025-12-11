@@ -17,3 +17,4 @@ dependencies=(
 for dependency in "${dependencies[@]}"; do
   add_install_globalset "$dependency"
 done
+
