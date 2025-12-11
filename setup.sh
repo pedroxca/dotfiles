@@ -37,6 +37,7 @@ apt_apps=(
 "apt-transport-https"
 "wget"
 "stow"
+"tmux"
  )
 
 brew_apps=(
@@ -82,3 +83,18 @@ mkdir $HOME/dev
 mkdir $HOME/dev/workspace
 
 source "$LOCAL_SRC/setup/asdf.sh"
+
+
+
+echo "Setup complete!"
+
+echo -e $(cat <<'EOF'
+
+#####################################
+#                                   #
+# REMEMBER TO DOWNLOAD A NERD FONT  #
+#    FOR THE TERMINAL TO WORK       #
+#                                   #
+#####################################
+EOF
+)
