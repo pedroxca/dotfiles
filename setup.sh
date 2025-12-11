@@ -97,9 +97,9 @@ if [[ ! -d "$HOME/dev/workspace" ]]; then
   mkdir $HOME/dev/workspace
 fi
 
-chmod +x "$LOCAL_SRC/setup/asdf.sh"
+# chmod +x "$LOCAL_SRC/setup/asdf.sh"
 
-$LOCAL_SRC/setup/asdf.sh
+# $LOCAL_SRC/setup/asdf.sh
 
 source $HOME/.bashrc
 
