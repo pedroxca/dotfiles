@@ -83,7 +83,7 @@ brew install "${brew_apps[@]}"
 
 stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
 
-LOCAL_SRC"=$HOME/.local/src"
+LOCAL_SRC="$HOME/.local/src"
 
 mkdir $HOME/dev
 mkdir $HOME/dev/workspace
