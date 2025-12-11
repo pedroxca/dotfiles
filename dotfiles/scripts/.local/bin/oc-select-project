@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# busque todos os projetos do openshift usando o comando oc projects e passe para o comando fzf
+
+descricao=$(cat <<'EOF'
+
+Busca os projetos do openshift no ambiente selecionado e ajusta o contexto para o projeto selecionado
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+source $HOME/.scripts/scripts-utils.sh
+
+# Busque todos os projetos do OpenShift
+projects=$(oc projects -q)
+
+# Passe os projetos para o comando fzf para seleção
+selected_project=$(echo "$projects" | fzf --prompt="Selecione um projeto: "  --border --exact --pointer="" --style full)
+
+abort-if-empty "$selected_project" "Nenhum projeto foi selecionado"
+
+gum spin --spinner monkey --title "Selecionando projeto..." -- oc project $selected_project
+
+echo -e "Projeto selecionado${italic} $selected_project ${reset}selecionado com sucesso!"

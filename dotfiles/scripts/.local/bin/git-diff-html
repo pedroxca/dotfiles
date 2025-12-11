@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+descricao=$(cat <<'EOF'
+
+Pega o último commit na ORIGIN, compara com as alterações locais,
+cria um arquivo temporário de html e abre no firefox do windows
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+source $HOME/.scripts/scripts-utils.sh
+
+# Obtenha o hash do último commit da branch atual
+current_branch_commit=$(git rev-parse HEAD)
+
+# Compare o commit atual com o último commit da branch atual usando diff-so-fancy e bat
+git diff --color-words $current_branch_commit | bat | aha > /tmp/git-diff.html --title "Diff do último commit"
+
+open_file_in_firefox "/tmp/git-diff.html"

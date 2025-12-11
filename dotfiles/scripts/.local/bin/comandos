@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+
+descricao=$(cat <<'EOF'
+
+Lista os comandos e abre uma breve descrição de cada um deles
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+# Verifique se o gum está instalado
+if ! command -v gum &> /dev/null; then
+    echo "Erro: o comando 'gum' não está instalado ou não está no PATH."
+    exit 1
+fi
+
+# Listar os comandos na pasta ~/.scripts/comandos
+comando=$(ls ~/.scripts/comandos | fzf  --border --pointer="" --preview '{} -d' --preview-window=wrap --style full)
+
+echo $comando

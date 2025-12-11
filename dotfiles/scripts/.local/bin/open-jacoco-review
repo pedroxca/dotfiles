@@ -1,0 +1,28 @@
+#!/bin/bash
+
+descricao=$(cat <<'EOF'
+
+Abre o review do jacoco no firefox do windows
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+source $HOME/.scripts/scripts-utils.sh
+
+if [[ ! -f "pom.xml" ]]; then
+    echo "Erro: O arquivo 'pom.xml' encontrado. Not in a maven project"
+    abort
+fi
+
+
+if [[ ! -f "target/site/jacoco/index.html" ]]; then
+    echo "Erro: O arquivo 'target/site/jacoco/index.html' encontrado!"
+    abort
+fi
+
+
+open_file_in_firefox "$(pwd)/target/site/jacoco/index.html"
+
+

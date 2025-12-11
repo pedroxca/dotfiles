@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+descricao=$(cat <<'EOF'
+
+Faz o log do projeto atual selecionado no openshift e apresenta na tela
+
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+source $HOME/.scripts/scripts-utils.sh
+
+
+
+oc logs -f $(oc get pods | rg Running | awk -F ' ' '{ print $1 }') -c $(oc project --short)

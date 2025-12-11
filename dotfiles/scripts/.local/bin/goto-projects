@@ -1,0 +1,34 @@
+#!/bin/bash
+
+descricao=$(cat <<'EOF'
+
+Lista todos os projetos git da pasta workspace e abre o projeto escolhido no VSCode
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+
+source $HOME/.scripts/scripts-utils.sh
+
+declare -A projetos
+
+
+for dir in $(fd -H -t d -g '.git' "$WORKSPACE" -x dirname); do
+  nome_projeto=$(basename "$dir")
+  projetos["$nome_projeto"]="$dir"
+done
+
+nome_selecionado=$(printf "%s\n" "${!projetos[@]}" | fzf --prompt="Selecione um projeto: " --exact --pointer="" --style full)
+
+abort-if-empty "$nome_selecionado" "Nenhum projeto foi selecionado"
+
+caminho_selecionado=${projetos[$nome_selecionado]}
+
+gum confirm
+
+abort-if-empty "$?"
+
+code $caminho_selecionado
+

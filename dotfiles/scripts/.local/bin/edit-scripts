@@ -1,0 +1,13 @@
+#!/bin/bash
+
+descricao=$(cat <<'EOF'
+
+Abre o VSCode para edição de comandos.
+
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+code ~/.scripts

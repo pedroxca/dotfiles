@@ -1,0 +1,35 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$line_break\
+$battery\
+$character"""
+
+add_newline = true
+
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[git_branch]
+format = "on [$branch](red)"
+
+[git_status]
+disabled = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+
+[os]
+format = "on [($name )]($style)"
+style = "bold blue"
+disabled = false
+
+
+

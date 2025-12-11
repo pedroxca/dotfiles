@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+
+descricao=$(cat <<'EOF'
+
+Busca replica sets de uma sigla e salva em um arquivo temporário
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+
+current_project=$(oc project -q)
+sigla=$(echo "$current_project" | cut -d'-' -f1)
+
+
+if [[ -z "$sigla" ]]; then
+    echo "Erro: não foi possível extrair a sigla do nome do projeto '$current_project'."
+    exit 1
+fi
+rs_list=$(oc get rs | awk '{print $1}' | grep "$sigla")
+
+if [[ -z "$rs_list" ]]; then
+    echo "Nenhum ReplicaSet contendo a sigla '$sigla' foi encontrado."
+    exit 1
+fi
+echo "$rs_list" > /tmp/rs_list.txt
+
+code /tmp/rs_list.txt

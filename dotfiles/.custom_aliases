@@ -1,0 +1,45 @@
+# -------
+# Aliases
+# -------
+alias 🍺="git checkout -b drunk"
+alias a='code .'
+alias c='code .'
+alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
+alias ns='npm start'
+alias start='npm start'
+alias nr='npm run'
+alias run='npm run'
+alias nis='npm i -S'
+alias l="ls" # List files in current directory
+alias ll="ls -al" # List all files in current directory in long list format
+alias o="open ." # Open the current directory in Finder
+
+# ----------------------
+# Git Aliases
+# ----------------------
+alias ga='git add'
+alias gaa='git add .'
+alias gpl='git pull'
+alias gaaa='git add -A'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gi='git init'
+alias gl='git log'
+alias gpsh='git push'
+alias gss='git status -s'
+alias gs='echo ""; echo "*********************************************"; echo -e "   DO NOT FORGET TO PULL BEFORE COMMITTING"; echo "*********************************************"; echo ""; git status'
+alias gco='git checkout'
+
+
+
+if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v bat)" ]]; then
+  alias fp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+fi
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+alias ls="exa --icons"
+alias la="exa -a --icons"
+alias p=". ~/.profile"
+alias lvim='NVIM_APPNAME="lazyvim" nvim'
+alias intellij="nohup idea.sh -Dawt.toolkit.name=WLToolkit & disown > /dev/null 2>&1"

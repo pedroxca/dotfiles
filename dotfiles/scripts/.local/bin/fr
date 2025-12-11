@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+descricao=$(cat <<'EOF'
+
+# Encontrar um padrão com rg e fzf, pré-visualizar com bat e editar o arquivo
+
+**Dependências:**
+  1. `rg`  | pesquisador recursivo no diretório atual por linhas que correspondam a um padrão
+  2. `fzf` | localizador fuzzy na linha de comando
+  3. `bat` | um clone do cat com destaque de sintaxe e integração com Git
+  4. `$EDITOR` | variável de ambiente exportada que se refere ao seu editor.
+
+**Referência:**
+https://github.com/junegunn/fzf/blob/master/ADVANCED.md#using-fzf-as-interactive-ripgrep-launcher
+
+**Fluxo:**
+1. Procure um texto nos arquivos usando Ripgrep (`rg`)
+2. Use o FZF de forma interativa para reiniciar a busca do Ripgrep ao modificar o padrão
+3. Visualize o conteúdo do arquivo selecionado com bat
+4. Abra o arquivo no seu editor ($EDITOR)
+
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' "
+INITIAL_QUERY="${*:-}"
+IFS=: read -ra selected < <(
+  FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
+  fzf --style full \
+      --ansi \
+      --disabled --query "$INITIAL_QUERY" \
+      --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+      --delimiter : \
+      --preview 'bat --color=always {1} --highlight-line {2}' \
+      --preview-window 'right,50%,border-bottom,+{2}+3/3,~3'
+)
+[ -n "${selected[0]}" ] && $EDITOR "${selected[0]}"

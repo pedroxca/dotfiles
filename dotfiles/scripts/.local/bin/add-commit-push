@@ -1,0 +1,65 @@
+#!/bin/bash
+
+
+descricao=$(cat <<'EOF'
+
+Adiciona tudo, faz o commit e faz o push para a branch selecionada.
+Segue o padrão de commits do github com tipo, mensagem e descrição(opcional).
+
+Opções de mensagem:
+
+fix, build, version, chore, add, wip, test, feat, docs, refactor, revert, perf, ci
+
+
+EOF
+)
+
+source $HOME/.local/src/scripts/app/get-description.sh
+
+source $HOME/.local/src/scripts/app/scripts-utils.sh
+
+branch_selecionada=$(git branch --format='%(refname:short)' | gum choose)
+
+abort-if-empty "$branch_selecionada" "Nenhuma branch foi selecionada"
+
+commit_type=$(gum choose "fix" "build" "version" "chore" "add" "wip" "test" "feat" "docs" "refactor" "revert" "perf" "ci")
+
+abort-if-empty "$commit_type" "Nenhum tipo de commit foi selecionado"
+
+arquivo_historico="$HOME/.local/src/scripts/app/historico/commit_history.txt"
+
+commit_summary=""
+commit_description=""
+
+gum confirm "Deseja selecionar commit do histórico?"
+if [[ $? == 0 ]]; then
+  commit_summary=$(grep "^$commit_type:" "$arquivo_historico" | sed "s/^$commit_type: //" | gum filter)
+  abort-if-empty "$commit_summary" "Nenhuma mensagem selecionada do histórico"
+else
+  commit_summary=$(gum input --placeholder "Resumo do commit (curto)...")
+  abort-if-empty "$commit_summary" "Nenhuma mensagem de commit foi digitada"
+  commit_description=$(gum write --height 8 --placeholder "Descrição longa do commit (opcional)...")
+  if [[ -n "$commit_description" ]]; then
+    printf "%s: %s\n    %s\n" "$commit_type" "$commit_summary" "$commit_description" >> "$arquivo_historico"
+  else
+    echo "$commit_type: $commit_summary" >> "$arquivo_historico"
+  fi
+fi
+
+# Stage all changes
+git add .
+
+# Abort if there's nothing to commit
+if [ -z "$(git status --porcelain)" ]; then
+  echo "Nenhuma alteração para commitar. Saindo."
+  exit 1
+fi
+
+# Commit with optional long description as second -m
+if [[ -n "$commit_description" ]]; then
+  git commit -m "$commit_type: $commit_summary" -m "$commit_description"
+else
+  git commit -m "$commit_type: $commit_summary"
+fi
+
+git push origin "$branch_selecionada"
