@@ -22,9 +22,9 @@ sudo apt update -y
 sudo apt upgrade -y
 
 
-########
-# APPS #
-########
+############
+# APT APPS #
+############
 apt_apps=(
 "fortune"
 "cowsay"
@@ -39,6 +39,17 @@ apt_apps=(
 "stow"
 "tmux"
  )
+
+####################
+# INSTALL APT APPS #
+####################
+
+sudo apt install -y "${apt_apps[@]}"
+
+
+#############
+# BREW APPS #
+#############
 
 brew_apps=(
 "fzf"
@@ -60,12 +71,9 @@ brew_apps=(
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 
-################
-# INSTALL APPS #
-################
-
-
-sudo apt install -y "${apt_apps[@]}"
+#####################
+# INSTALL BREW APPS #
+#####################
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
 brew install "${brew_apps[@]}"
