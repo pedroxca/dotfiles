@@ -89,6 +89,7 @@ mkdir $HOME/dev
 mkdir $HOME/dev/workspace
 
 source "$LOCAL_SRC/setup/asdf.sh"
+source $HOME/.bashrc
 
 
 
