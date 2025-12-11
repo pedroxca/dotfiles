@@ -81,14 +81,21 @@ brew install "${brew_apps[@]}"
 # LINK ALL FILES #
 ##################
 
-mv ~/.bashrc ~/.bashrc.bkp
+if [[ -f "~/.bashrc" ]]; then
+  mv ~/.bashrc ~/.bashrc.bkp
+fi
 
 stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
 
 LOCAL_SRC="$HOME/.local/src"
 
-mkdir $HOME/dev
-mkdir $HOME/dev/workspace
+if [[ ! -d "$HOME/dev" ]]; then
+  mkdir $HOME/dev
+fi
+
+if [[ ! -d "$HOME/dev/workspace" ]]; then
+  mkdir $HOME/dev/workspace
+fi
 
 source "$LOCAL_SRC/setup/asdf.sh"
 source $HOME/.bashrc
