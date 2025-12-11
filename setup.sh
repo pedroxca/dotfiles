@@ -81,9 +81,7 @@ brew install "${brew_apps[@]}"
 # LINK ALL FILES #
 ##################
 
-cd ./dotfiles
-stow bash scripts starship tmux -t $HOME
-cd ..
+stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
 
 LOCAL_SRC"=$HOME/.local/src"
 
