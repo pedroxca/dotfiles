@@ -38,8 +38,8 @@ if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v bat)" ]]; then
 fi
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
-alias ls="exa --icons"
-alias la="exa -a --icons"
+alias ls="eza --icons"
+alias la="eza -a --icons"
 alias p=". ~/.profile"
 alias lvim='NVIM_APPNAME="lazyvim" nvim'
 alias intellij="nohup idea.sh -Dawt.toolkit.name=WLToolkit & disown > /dev/null 2>&1"

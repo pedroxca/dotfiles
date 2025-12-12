@@ -64,16 +64,20 @@ brew_apps=(
 # INSTALL BREW #
 ################
 
-# NONINTERACTIVE=1
-#
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+NONINTERACTIVE=1
+
+if which -s brew; then
+  echo "Brew is already installed, skipping..."
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+fi
 
 #####################
 # INSTALL BREW APPS #
 #####################
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
-# brew install "${brew_apps[@]}"
+brew install "${brew_apps[@]}"
 
 ##################
 # LINK ALL FILES #
@@ -95,16 +99,23 @@ if [[ ! -d "$HOME/dev/workspace" ]]; then
   mkdir $HOME/dev/workspace
 fi
 
-# chmod +x "$LOCAL_SRC/setup/asdf.sh"
+###################
+# SETTING UP ASDF #
+###################
 
-# $LOCAL_SRC/setup/asdf.sh
+chmod +x "$LOCAL_SRC/setup/asdf.sh"
+$LOCAL_SRC/setup/asdf.sh
+
+#################
+# SOURCING BASH #
+#################
 
 source "$HOME/.bashrc"
 
 echo "Setup complete!"
 
-echo $(
-  cat <<'EOF'
+cat <<EOF
+
 
 #####################################
 #                                   #
@@ -112,5 +123,6 @@ echo $(
 #    FOR THE TERMINAL TO WORK       #
 #                                   #
 #####################################
+
+
 EOF
-)

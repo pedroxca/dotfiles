@@ -4,7 +4,6 @@ shopt -s autocd
 shopt -s histappend
 export PATH=$PATH:$HOME/bin
 
-
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
@@ -13,6 +12,8 @@ bind '"\e[B": history-search-forward'
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # txtred='\[\e[0;31m\]' # Red
 # txtgrn='\[\e[0;32m\]' # Green
@@ -54,9 +55,8 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(gh copilot alias -- bash)"
 . <(asdf completion bash)
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 
 source $HOME/.custom_aliases
 
 export WORKSPACE="$HOME/dev/workspace"
+
