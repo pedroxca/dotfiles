@@ -99,7 +99,7 @@ fi
 
 # $LOCAL_SRC/setup/asdf.sh
 
-source $HOME$HOME/.bashrc
+source "$HOME/.bashrc"
 
 echo "Setup complete!"
 
