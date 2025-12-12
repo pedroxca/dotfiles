@@ -79,11 +79,11 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
 # LINK ALL FILES #
 ##################
 
-if [[ -f "~$HOME/.bashrc" ]]; then
+if [[ -f "$HOME/.bashrc" ]]; then
   mv "$HOME/.bashrc" "$HOME/.bashrc.bkp"
 fi
 
-stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
+stow --dir ./dotfiles --target $HOME bash scripts starship tmux
 
 LOCAL_SRC="$HOME/.local/src"
 
