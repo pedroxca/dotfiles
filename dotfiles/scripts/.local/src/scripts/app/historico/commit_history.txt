@@ -1,2 +1,3 @@
 fix: commands and tmux config
 fix: curl
+add: gitignore
