@@ -64,23 +64,23 @@ brew_apps=(
 # INSTALL BREW #
 ################
 
-NONINTERACTIVE=1
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+# NONINTERACTIVE=1
+#
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
 
 #####################
 # INSTALL BREW APPS #
 #####################
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
-brew install "${brew_apps[@]}"
+# brew install "${brew_apps[@]}"
 
 ##################
 # LINK ALL FILES #
 ##################
 
 if [[ -f "~$HOME/.bashrc" ]]; then
-  mv ~$HOME/.bashrc ~$HOME/.bashrc.bkp
+  mv "$HOME/.bashrc" "$HOME/.bashrc.bkp"
 fi
 
 stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
@@ -114,4 +114,3 @@ echo $(
 #####################################
 EOF
 )
-
