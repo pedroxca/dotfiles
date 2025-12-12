@@ -21,22 +21,21 @@ fi
 sudo apt update -y
 sudo apt upgrade -y
 
-
 ############
 # APT APPS #
 ############
 apt_apps=(
-"fortune"
-"cowsay"
-"curl"
-"git"
-"procps"
-"file"
-"apt-transport-https"
-"wget"
-"stow"
-"tmux"
- )
+  "fortune"
+  "cowsay"
+  "curl"
+  "git"
+  "procps"
+  "file"
+  "apt-transport-https"
+  "wget"
+  "stow"
+  "tmux"
+)
 
 ####################
 # INSTALL APT APPS #
@@ -44,30 +43,30 @@ apt_apps=(
 
 sudo apt install -y "${apt_apps[@]}"
 
-
 #############
 # BREW APPS #
 #############
 
 brew_apps=(
-"fzf"
-"ripgrep"
-"fd"
-"aha"
-"bat"
-"gh"
-"gum"
-"starship"
-"eza"
-"asdf"
+  "fzf"
+  "ripgrep"
+  "fd"
+  "aha"
+  "bat"
+  "gh"
+  "gum"
+  "starship"
+  "eza"
+  "asdf"
 )
 
 ################
 # INSTALL BREW #
 ################
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+NONINTERACTIVE=1
 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
 
 #####################
 # INSTALL BREW APPS #
@@ -76,13 +75,12 @@ brew_apps=(
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
 brew install "${brew_apps[@]}"
 
-
 ##################
 # LINK ALL FILES #
 ##################
 
-if [[ -f "~/.bashrc" ]]; then
-  mv ~/.bashrc ~/.bashrc.bkp
+if [[ -f "~$HOME/.bashrc" ]]; then
+  mv ~$HOME/.bashrc ~$HOME/.bashrc.bkp
 fi
 
 stow --dir ./dotfiles --target $HOME bash scripts starship tmux --adopt
@@ -101,13 +99,12 @@ fi
 
 # $LOCAL_SRC/setup/asdf.sh
 
-source $HOME/.bashrc
-
-
+source $HOME$HOME/.bashrc
 
 echo "Setup complete!"
 
-echo -e $(cat <<'EOF'
+echo $(
+  cat <<'EOF'
 
 #####################################
 #                                   #
@@ -117,3 +114,4 @@ echo -e $(cat <<'EOF'
 #####################################
 EOF
 )
+
