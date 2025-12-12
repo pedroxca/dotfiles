@@ -8,7 +8,7 @@ Busca replica sets de uma sigla e salva em um arquivo temporário
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
 

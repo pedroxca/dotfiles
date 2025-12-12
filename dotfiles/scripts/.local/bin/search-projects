@@ -7,10 +7,10 @@ Abre uma procura de projetos git e seleciona um
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 declare -A projetos
 

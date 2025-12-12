@@ -8,10 +8,10 @@ Busca os projetos do openshift no ambiente selecionado e ajusta o contexto para 
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 # Busque todos os projetos do OpenShift
 projects=$(oc projects -q)

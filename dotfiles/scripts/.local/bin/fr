@@ -22,7 +22,7 @@ https://github.com/junegunn/fzf/blob/master/ADVANCED.md#using-fzf-as-interactive
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' "

@@ -8,10 +8,10 @@ OBS: Precisa da permissão manual antes de ser executado deste script
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app.sh
 
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 
 verifica_comandos() {

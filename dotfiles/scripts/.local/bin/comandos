@@ -8,7 +8,7 @@ Lista os comandos e abre uma breve descrição de cada um deles
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
 # Verifique se o gum está instalado

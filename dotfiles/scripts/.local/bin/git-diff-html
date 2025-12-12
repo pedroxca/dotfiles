@@ -8,10 +8,10 @@ cria um arquivo temporário de html e abre no firefox do windows
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 # Obtenha o hash do último commit da branch atual
 current_branch_commit=$(git rev-parse HEAD)

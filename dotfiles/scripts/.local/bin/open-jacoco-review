@@ -6,10 +6,10 @@ Abre o review do jacoco no firefox do windows
 EOF
 )
 
-source $HOME/.scripts/get-description.sh
+source $HOME/.local/src/scripts/app/get-description.sh
 
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 if [[ ! -f "pom.xml" ]]; then
     echo "Erro: O arquivo 'pom.xml' encontrado. Not in a maven project"
