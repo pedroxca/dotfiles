@@ -46,6 +46,8 @@ PATH=$PATH:~/.cargo/bin/
 PATH=$PATH:/usr/local/go/bin
 PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
+. ~/.asdf/plugins/java/set-java-home.bash
+
 fortune | cowsay -f tux
 
 ###############
@@ -53,7 +55,6 @@ fortune | cowsay -f tux
 ###############
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
-eval "$(gh copilot alias -- bash)"
 . <(asdf completion bash)
 
 source $HOME/.custom_aliases

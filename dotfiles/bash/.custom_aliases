@@ -36,6 +36,7 @@ alias gco='git checkout'
 if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v bat)" ]]; then
   alias fp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 fi
+
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 alias ls="eza --icons"

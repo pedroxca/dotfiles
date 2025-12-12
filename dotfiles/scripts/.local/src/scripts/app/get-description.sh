@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/.scripts/scripts-utils.sh
+source $HOME/.local/src/scripts/app/scripts-utils.sh
 
 
 while getopts ":d" opt; do

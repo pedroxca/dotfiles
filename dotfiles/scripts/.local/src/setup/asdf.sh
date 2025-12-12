@@ -2,8 +2,8 @@
 
 add_install_globalset() {
   asdf plugin add $1
-  asdf plugin install $1 latest
-  asdf plugin set --home $1 latest
+  asdf install $1 $2
+  asdf set $1 $2 --home
 }
 
 # dependencies=(
@@ -18,6 +18,6 @@ add_install_globalset() {
 #
 #
 
-add_install_globalset "java"
-add_install_globalset "python"
-add_install_globalset "nodejs"
+add_install_globalset "java" "openjdk-21"
+add_install_globalset "python" "latest"
+add_install_globalset "nodejs" "latest"

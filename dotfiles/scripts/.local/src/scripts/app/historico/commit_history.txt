@@ -1,1 +1,2 @@
 fix: commands and tmux config
+fix: curl
