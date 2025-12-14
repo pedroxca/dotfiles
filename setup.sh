@@ -4,13 +4,13 @@
 # SETUP #
 #########
 
-set -e
+set -euo pipefail
 
 . /etc/os-release
 
 os="$ID"
 
-if [[ "$os" -ne "ubuntu" ]]; then
+if [[ "$os" != "ubuntu" ]]; then
   echo "#####################################"
   echo "#                                   #"
   echo "#              NOT UBUNTU           #"
@@ -19,9 +19,6 @@ if [[ "$os" -ne "ubuntu" ]]; then
   exit
 fi
 
-echo "export CURL_HOME=/etc" | sudo tee -a /etc/profile
-echo "insecure" | sudo tee /etc/.curlrc
-source /etc/profile
 
 ######################
 # UPDATE AND UPGRADE #
@@ -56,6 +53,11 @@ apt_apps=(
   "jq"
   "zip"
   "unzip"
+  "build-essential"
+  "ca-certificates"
+  "gnupg"
+  "software-properties-common"
+
 )
 
 ####################
@@ -102,7 +104,7 @@ echo "#####################################"
 
 NONINTERACTIVE=1
 
-if which -s brew; then
+if command -v brew >/dev/null 2>&1; then
   echo "#####################################"
   echo "#                                   #"
   echo "#    BREW IS ALREADY INSTALLED      #"
@@ -134,21 +136,20 @@ echo "#           LINKING FILES...        #"
 echo "#                                   #"
 echo "#####################################"
 
-if [[ -f "$HOME/.bashrc" ]]; then
-  mv "$HOME/.bashrc" "$HOME/.bashrc.bkp"
-fi
 
-stow --dir ./dotfiles --target $HOME bash scripts starship tmux
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+
+stow --dir "$SCRIPT_DIR/dotfiles" --target $HOME bash scripts starship tmux
+
+
+
+[ -f "$HOME/.bashrc.d/.mainrc" ] && echo "source "$HOME/.bashrc.d/.mainrc"" >> "$HOME/.bashrc"
+
 
 LOCAL_SRC="$HOME/.local/src"
 
-if [[ ! -d "$HOME/dev" ]]; then
-  mkdir $HOME/dev
-fi
-
-if [[ ! -d "$HOME/dev/workspace" ]]; then
-  mkdir $HOME/dev/workspace
-fi
+mkdir -p $HOME/dev/workspace
 
 ###################
 # SETTING UP ASDF #
@@ -191,15 +192,11 @@ echo "#           SETUP COMPLETE!         #"
 echo "#                                   #"
 echo "#####################################"
 
-cat <<EOF
 
+echo "#####################################"
+echo "#                                   #"
+echo "# REMEMBER TO DOWNLOAD A NERD FONT  #"
+echo "#    FOR THE TERMINAL TO WORK       #"
+echo "#                                   #"
+echo "#####################################"
 
-#####################################
-#                                   #
-# REMEMBER TO DOWNLOAD A NERD FONT  #
-#    FOR THE TERMINAL TO WORK       #
-#                                   #
-#####################################
-
-
-EOF
