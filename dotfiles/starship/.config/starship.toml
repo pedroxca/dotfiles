@@ -1,6 +1,4 @@
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
 $line_break\
@@ -8,8 +6,6 @@ $battery\
 $character"""
 
 add_newline = true
-
-# ${custom.github_repo}\
 
 [character]
 success_symbol = "[>](bold green)"
@@ -23,26 +19,11 @@ format = "[git::$branch](purple)"
 [git_status]
 disabled = true
 
-# [directory]
-# before_repo_root_style = 'red'
-# repo_root_style = 'red'
-# repo_root_format = '[$before_root_path]($before_repo_root_style)[$custom]($repo_root_style)[$path](red)[$read_only]($read_only_style) '
-
 [directory]
-style = "bold red"
-
-
+style = "red"
 
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
 discharging_symbol = "⚡"
-
-
-
-# [custom.github_repo]
-# command = "/home/wsl/.local/bin/starship-github-or-dir"
-# when = 'sh -c "git rev-parse --is-inside-work-tree >/dev/null 2>&1"'
-# format = '[$output](red) '
-
 
