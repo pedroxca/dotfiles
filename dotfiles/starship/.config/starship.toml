@@ -9,27 +9,40 @@ $character"""
 
 add_newline = true
 
+# ${custom.github_repo}\
 
 [character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+success_symbol = "[>](bold green)"
+error_symbol = "[>](red)"
+vimcmd_symbol = "[<](green)"
 
 [git_branch]
-format = "on [$branch](red)"
+format = "[git::$branch](purple)"
+
 
 [git_status]
 disabled = true
+
+# [directory]
+# before_repo_root_style = 'red'
+# repo_root_style = 'red'
+# repo_root_format = '[$before_root_path]($before_repo_root_style)[$custom]($repo_root_style)[$path](red)[$read_only]($read_only_style) '
+
+[directory]
+style = "bold red"
+
+
 
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
 discharging_symbol = "⚡"
 
-[os]
-format = "on [($name )]($style)"
-style = "bold blue"
-disabled = false
 
+
+# [custom.github_repo]
+# command = "/home/wsl/.local/bin/starship-github-or-dir"
+# when = 'sh -c "git rev-parse --is-inside-work-tree >/dev/null 2>&1"'
+# format = '[$output](red) '
 
 
