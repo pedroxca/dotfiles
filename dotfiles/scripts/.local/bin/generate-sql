@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+
+descricao=$(cat <<'EOF'
+
+Abre o arquivo de script para geração de sql muito doido
+EOF
+)
+
+source $HOME/.scripts/get-description.sh
+
+
+
+file="$HOME/.local/src/misc/generate-sql.sh"
+
+touch $file
+
+chmod +x $file
+
+code $file
+
