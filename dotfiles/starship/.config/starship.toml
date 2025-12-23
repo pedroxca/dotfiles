@@ -5,22 +5,23 @@ $line_break\
 $battery\
 $character"""
 
-add_newline = true
+# add_newline = true
 
 [character]
-success_symbol = "[>](bold green)"
+success_symbol = "[>](white)"
 error_symbol = "[>](red)"
 vimcmd_symbol = "[<](green)"
 
 [git_branch]
-format = "[git::$branch](purple)"
+format = "[\\[git:$branch\\]](green)"
 
 
 [git_status]
 disabled = true
 
 [directory]
-style = "red"
+style = "#f659ed"
+format='[pedro: ](red)[$path]($style)[$read_only]($read_only_style) '
 
 [battery]
 full_symbol = "🔋"
